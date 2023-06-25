@@ -22,6 +22,7 @@ jobs:
             . venv/bin/activate
             cd collecjv
             pytest
+            flake8
       - store_artifacts:
           path: test-reports/
           destination: python_app
