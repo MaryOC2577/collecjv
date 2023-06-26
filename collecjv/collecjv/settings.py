@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "collecjv"
 ]
 
 MIDDLEWARE = [
@@ -76,11 +77,11 @@ WSGI_APPLICATION = "collecjv.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-         "NAME": "collecjv",
-         "USER": "collec",
-         "PASSWORD": "co77ll25ec",
-         "HOST": "127.0.0.1",
-         "PORT": "45754",
+        "NAME": "collecjv",
+        "USER": "collec",
+        "PASSWORD": "co77ll25ec",
+        "HOST": "127.0.0.1",
+        "PORT": "45754",
     }
 }
 

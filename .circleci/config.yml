@@ -23,6 +23,9 @@ jobs:
             cd collecjv
             pytest
             flake8
+      - name: Super-Linter
+        uses: super-linter/super-linter@v5.0.0
+
       - store_artifacts:
           path: test-reports/
           destination: python_app
