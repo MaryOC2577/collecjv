@@ -27,13 +27,9 @@ jobs:
           path: test-reports/
           destination: python_app
 
-version: '2.1'
-orbs:
-  github-super-linter: circleci/github-super-linter@1.0
-workflows:
-  lint-code:
-    jobs:
-      - github-super-linter/lint
+# - name: Super-Linter
+#   uses: super-linter/super-linter@v5.0.0
+
 
       
 
