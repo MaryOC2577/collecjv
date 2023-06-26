@@ -23,8 +23,8 @@ jobs:
             cd collecjv
             pytest
             
-      - name: Super-Linter
-        uses: super-linter/super-linter@v5.0.0
+          name: Super-Linter
+          uses: super-linter/super-linter@v5.0.0
 
       - store_artifacts:
           path: test-reports/
