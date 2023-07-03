@@ -23,14 +23,22 @@ class Game(models.Model):
     description = models.CharField(max_length=400)
     state = models.CharField(max_length=400)
     category = models.CharField(max_length=400)
-    date = models.ManyToManyField(Editor, related_name='models', through='Editor')
+    date = models.ManyToManyField(Editor, related_name='models', through='GameEditor')
     state = models.ManyToManyField(Collection, related_name='models', through='Collection')
 
 
-class User(AbstractUser):
+class GameEditor(models.Model):
+    editor = models.ForeignKey(Editor, on_delete=models.CASCADE)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    date = models.DateField()
+
+
+class GameCollection(models.Min):
+    collection = models.ForeignKey(Collection, on_delete=models.CASCADE)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    state = models.CharField(max_length=400)
+
+
+class GameUser(AbstractUser):
     username = models.TextField(unique=True)
-    email = models.EmailField(_("email address"), blank=True, unique=True)
-    password = models.TextField()
-
-
-
+    email = models.EmailField(("email address"), blank=True, unique=True)
