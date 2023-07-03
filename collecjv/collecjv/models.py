@@ -24,7 +24,7 @@ class Game(models.Model):
     state = models.CharField(max_length=400)
     category = models.CharField(max_length=400)
     date = models.ManyToManyField(Editor, related_name='models', through='GameEditor')
-    state = models.ManyToManyField(Collection, related_name='models', through='Collection')
+    state = models.ManyToManyField(Collection, related_name='models', through='GameCollection')
 
 
 class GameEditor(models.Model):
