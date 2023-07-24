@@ -1,9 +1,9 @@
+from collecjv.models import GameUser
 from django.views.generic import View
 from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from models import GameUser
 from django.http.response import HttpResponse
 
 
@@ -49,7 +49,6 @@ def registration(request):
                 "registration.html",
                 {"error": "Les mots de passe de correspondent pas."},
             )
-
         GameUser.objects.create_user(username=username, email=email, password=password1)
         return HttpResponse(f"Bienvenue {username} !")
 
