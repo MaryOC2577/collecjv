@@ -1,6 +1,6 @@
 from django.views.generic import View
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from collecjv.models import GameUser
 from django.http.response import HttpResponse
@@ -24,13 +24,19 @@ class LoginView(View):
         if user is not None:
             login(request, user)
             messages.add_message(request, messages.SUCCESS, "Vous êtes connecté !")
-            return redirect("account")
+            return redirect("home")
         else:
             messages.add_message(
                 request, messages.ERROR, "Les champs renseignés sont invalides."
             )
             return render(request, "login.html")
-        
+
+
+def user_logout(request):
+    logout(request)
+    messages.add_message(request, messages.SUCCESS, "Vous êtes déconnecté !")
+    return redirect("home")       
+
 
 def registration(request):
     if request.method == "POST":

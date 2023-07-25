@@ -5,7 +5,7 @@
 <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
     <div class="form-elem">
-        <div>Adresse email ou nom d'utilisateur :</div>
+        <div>Nom d'utilisateur :</div>
         <input type="text" id="username" name="username" />
     </div>
     <div class="form-elem">
@@ -17,7 +17,7 @@
     </div>
 </form>
 <p>
-    Pas de compte ? Vous pouvez en créer un <a href="">ici</a> !
+    Pas de compte ? Vous pouvez en créer un <a href="{% url 'registration' %}">ici</a> !
 </p>
 {% endif %}
 {% endblock %}
