@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<p>
+    Société Collec JV
+    5 rue de la biblothèque
+    75 000 PARIS
+    NRO SIRET : XX-XX-XX
+    Téléphone : 01 XX XX XX
+    Hébergement : XXX XXX
+    CGU : voir modèle
+</p>
+{% endblock %}
+
+{% block info %}
+<hr>
+<p>
+    Pas de compte ? Vous pouvez en créer un <a href="{% url 'registration' %}">ici</a> !
+</p>
+{% endblock %}

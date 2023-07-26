@@ -35,7 +35,7 @@ class LoginView(View):
 def user_logout(request):
     logout(request)
     messages.add_message(request, messages.SUCCESS, "Vous êtes déconnecté !")
-    return redirect("home")       
+    return redirect("home")
 
 
 def registration(request):
@@ -54,3 +54,8 @@ def registration(request):
         return HttpResponse(f"Bienvenue {username} !")
 
     return render(request, "registration.html")
+
+
+class AccountView(View):
+    def get(self, request):
+        return render(request, "account.html")

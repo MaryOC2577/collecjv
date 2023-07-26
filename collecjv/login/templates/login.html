@@ -16,8 +16,13 @@
         <input class="logBtn" id="LogButton" type="submit" value="Login" />
     </div>
 </form>
+
+{% endif %}
+{% endblock %}
+
+{% block info %}
+<hr>
 <p>
     Pas de compte ? Vous pouvez en créer un <a href="{% url 'registration' %}">ici</a> !
 </p>
-{% endif %}
 {% endblock %}
