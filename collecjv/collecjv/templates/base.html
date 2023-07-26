@@ -26,7 +26,9 @@
 
     {% block contact %}
     <hr>
-    <p>Pour nous contacter :</p>
+    <p>
+        <a href="{% url 'contact' %}">Contact</a>
+    </p>
     <p>
         <a href="{% url 'cgu' %}">Informations légales</a>
     </p>

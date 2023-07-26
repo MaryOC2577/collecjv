@@ -6,4 +6,8 @@ class Home(TemplateView):
 
 
 class CguView(TemplateView):
-    template_name ="legalpage.html"
+    template_name = "legalpage.html"
+
+
+class ContactView(TemplateView):
+    template_name = "contact.html"

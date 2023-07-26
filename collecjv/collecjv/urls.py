@@ -25,5 +25,6 @@ urlpatterns = [
     path("search/", include("search.urls")),
     path("login/", include("login.urls")),
     path("collection/", include("collection.urls")),
-    path("cgu", views.CguView.as_view(),name="cgu")
+    path("cgu", views.CguView.as_view(), name="cgu"),
+    path("contact", views.ContactView.as_view(), name="contact")
 ]
