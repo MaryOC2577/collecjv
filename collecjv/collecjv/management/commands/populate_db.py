@@ -1,33 +1,58 @@
-from igdb.wrapper import IGDBWrapper
 import requests
-import json
+from django.core.management.base import BaseCommand
+from collecjv.models import Game, Company, GameCompany
 
 
-client_id = 'mn03z6fvnt221t7uo6gby9ltfhwbqq'
-client_secret = '4y3rm04ml420jc1b2mijzvcun4cscx'
+class Command(BaseCommand):
+
+    # def company_name(self, id):
+
+    #     # stream = requests.post('https://api.igdb.com/v4/companies', headers=headers, data="fields name; where id={id};")
+    #     pass
 
 
-body = {
-    'client_id': client_id,
-    'client_secret': client_secret,
-    "grant_type": 'client_credentials'
-}
-r = requests.post('https://id.twitch.tv/oauth2/token', body)
+    # def area_name(self, name):
 
-# data output
-keys = r.json()
+    #     # stream = requests.post('https://api.igdb.com/v4/regions', headers=headers, data="fields name; where id={id};")
+    #     pass
 
-print(keys)
+    def handle(self, *args, **options):
 
-headers = {
-    'Client-ID': client_id,
-    'Authorization': 'Bearer ' + keys['access_token']
-}
+        client_id = 'mn03z6fvnt221t7uo6gby9ltfhwbqq'
+        client_secret = '4y3rm04ml420jc1b2mijzvcun4cscx'
 
-print(headers)
+        body = {
+            'client_id': client_id,
+            'client_secret': client_secret,
+            "grant_type": 'client_credentials'
+        }
+        r = requests.post('https://id.twitch.tv/oauth2/token', body)
 
-stream = requests.post('https://api.igdb.com/v4/games', headers=headers, data="fields *;")
+        # data output
+        keys = r.json()
 
-stream_data = stream.json()
+        print(keys)
 
-print(stream_data)
+        headers = {
+            'Client-ID': client_id,
+            'Authorization': 'Bearer ' + keys['access_token']
+        }
+
+        print(headers)
+
+        stream = requests.post('https://api.igdb.com/v4/games', headers=headers, data="fields id, name, involved_companies,summary, game_localizations, platforms.name; limit 50;")
+
+        game_data = stream.json()
+
+
+        for game in game_data:
+            print(game)
+            if game["involved_companies"] and game["game_localizations"]:
+                cpy = Company.objects.get_or_create(name=game.get("involved_companies", ""), area=["game_localizations"])
+                one_game = Game.objects.get_or_create(name=game["name"], description=["summary"], category="", platform=None)
+                print(one_game)
+                one_game[0].company.add(cpy[0])
+                one_game[0].save()
+
+        
+
