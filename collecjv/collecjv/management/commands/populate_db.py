@@ -40,7 +40,7 @@ class Command(BaseCommand):
 
         print(headers)
 
-        stream = requests.post('https://api.igdb.com/v4/games', headers=headers, data="fields id, name, involved_companies,summary, game_localizations, platforms.name; limit 50;")
+        stream = requests.post('https://api.igdb.com/v4/games', headers=headers, data="fields id, name, involved_companies,summary, game_localizations, platforms.name; limit 1000;")
 
         game_data = stream.json()
 
