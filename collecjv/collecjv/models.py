@@ -31,9 +31,10 @@ class Game(models.Model):
 
 
 class GameCompany(models.Model):
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
-    game = models.ForeignKey(Game, on_delete=models.CASCADE)
-    date = models.DateField()
+    # ajouter blank
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, blank=True)
+    date = models.DateField(blank=True)
 
 
 class GameCollection(models.Model):
