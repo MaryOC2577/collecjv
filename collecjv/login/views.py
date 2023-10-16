@@ -6,7 +6,7 @@ from collecjv.models import GameUser
 from django.http.response import HttpResponse
 from login.models import PassChange
 from datetime import datetime, timezone, timedelta
-from mail import send_reset_password_mail
+from login.mail import send_reset_password_mail
 
 
 class LoginView(View):
