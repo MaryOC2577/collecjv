@@ -7,6 +7,7 @@ from django.http.response import HttpResponse
 from login.models import PassChange
 from datetime import datetime, timezone, timedelta
 from login.mail import send_reset_password_mail
+import uuid
 
 
 class LoginView(View):
@@ -17,11 +18,12 @@ class LoginView(View):
         """Authenticate a user."""
 
         # Step 1 :
-        email = username = request.POST["username"]
+        print(request.POST)
+        username = request.POST["username"]
         password = request.POST["password"]
 
         # Step 2 :
-        user = authenticate(request, email=email, username=username, password=password)
+        user = authenticate(request, username=username, password=password)
 
         # Step 3 :
         if user is not None:
@@ -87,15 +89,15 @@ class PasswordDone(TemplateView):
     template_name = "password_done.html"
 
     def post(self, request):
-        umail = self.request.POST.get("usermail", "")
-
+        umail = self.request.POST.get("email", None)
+        print(umail)
         if umail:
             try:
                 user = GameUser.objects.get(email=umail)
-                myuuid = GameUser.uuid4()
+                myuuid = str(uuid.uuid4())
 
-            except Exception:
-                pass
+            except Exception as e:
+                print(str(e))
             else:
                 PassChange.objects.create(email=umail, token=myuuid)
                 send_reset_password_mail(umail, myuuid, user)
