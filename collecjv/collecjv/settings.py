@@ -135,4 +135,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "collecjv.GameUser"  # cette variable pointe sur le modèle User à utiliser
 
-#os.environ["DJANGO_SETTINGS_MODULE"] = "collecjv.settings"
+# os.environ["DJANGO_SETTINGS_MODULE"] = "collecjv.settings"
