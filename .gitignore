@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# virtual environnement
+.venv
+
 # User-specific files
 *.rsuser
 *.suo

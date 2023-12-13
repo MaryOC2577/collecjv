@@ -1,18 +1,19 @@
 import datetime
 import pytest
 from django.test import Client, TestCase
-from collecjv.login.models import PassChange
+from login.models import PassChange
 
 @pytest.mark.django_db
-class TestLoginModel():
-    client = Client()
-    passchange = PassChange.objects.create(
-        email="test@test.fr",
-        token="Dsojfpsosetijpjpzers",
-        date=datetime.datetime.now(),
-    )
-    expected_value = "test@test.fr"
-    assert str(passchange.objects.get("email")) == expected_value
+class TestLoginModel(TestCase):
+    def test_passchange(self):
+        client = Client()
+        passchange = PassChange.objects.create(
+            email="test@test.fr",
+            token="Dsojfpsosetijpjpzers",
+            date=datetime.datetime.now(),
+        )
+        expected_value = "test@test.fr"
+        assert str(passchange.email) == expected_value
 
 
 class TestLoginViews(TestCase):
