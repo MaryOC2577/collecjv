@@ -4,8 +4,6 @@ from collecjv.models import Company
 
 
 @pytest.mark.django_db
-# @pytest.mark.transactional_db
-# @pytest.mark.django_db(transaction=True)
 class TestCompagny(TestCase):
     compagny = Company.objects.create(
         name="test compagny",
