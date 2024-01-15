@@ -6,10 +6,9 @@ from collecjv.models import Game
 class CollectView(View):
     def get(self, request):
         return render(request, "collection.html")
-    
+
 
 class OneGameView(DetailView):
-    
     template_name = "game.html"
 
     context_object_name = "game"

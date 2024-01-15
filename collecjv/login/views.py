@@ -64,7 +64,7 @@ def registration(request):
 class AccountView(View):
     def get(self, request):
         return render(request, "account.html")
-    
+
 
 class NewPassword(TemplateView):
     template_name = "new_password.html"
@@ -79,11 +79,11 @@ class NewPassword(TemplateView):
             return render(request, "wrong_token.html")
         else:
             return render(request, "login.html")
-        
+
 
 class PasswordReset(TemplateView):
     template_name = "forget_password.html"
-        
+
 
 class PasswordDone(TemplateView):
     template_name = "password_done.html"
