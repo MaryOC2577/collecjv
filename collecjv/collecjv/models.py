@@ -25,9 +25,19 @@ class Game(models.Model):
     name = models.CharField(max_length=400, unique=True)
     description = models.CharField(max_length=400)
     category = models.CharField(max_length=400)
-    platform = models.ForeignKey(Platform, on_delete=models.DO_NOTHING,  blank=True, null=True)
-    company = models.ManyToManyField(Company, related_name='models', through='GameCompany', blank=True, null=True)
-    state = models.ManyToManyField(Collection, related_name='models', through='GameCollection', blank=True, null=True)
+    platform = models.ForeignKey(
+        Platform, on_delete=models.DO_NOTHING, blank=True, null=True
+    )
+    company = models.ManyToManyField(
+        Company, related_name="models", through="GameCompany", blank=True, null=True
+    )
+    state = models.ManyToManyField(
+        Collection,
+        related_name="models",
+        through="GameCollection",
+        blank=True,
+        null=True,
+    )
 
 
 class GameCompany(models.Model):
@@ -46,4 +56,3 @@ class GameCollection(models.Model):
 class GameUser(AbstractUser):
     username = models.TextField(unique=True)
     email = models.EmailField(("email address"), blank=True, unique=True)
-
