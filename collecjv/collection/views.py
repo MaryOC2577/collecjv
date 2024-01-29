@@ -1,12 +1,19 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render
-from django.views.generic import View, DetailView
-from collecjv.models import Game
+from django.views.generic import View, DetailView,ListView
+from collecjv.models import Game, Collection
 
 
-class CollectView(View):
-    def get(self, request):
-        return render(request, "collection.html")
+class CollectView(ListView):
 
+    template_name ="collection.html"
+    context_object_name = "collection"
+    model = Collection
+
+    def get_queryset(self) -> QuerySet[Any]:
+        return super().get_queryset()
+    
 
 class OneGameView(DetailView):
     template_name = "game.html"

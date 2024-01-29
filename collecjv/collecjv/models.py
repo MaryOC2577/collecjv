@@ -13,18 +13,18 @@ class Company(models.Model):
 
 class Collection(models.Model):
     name = models.CharField(max_length=400, unique=True)
-    description = models.CharField(max_length=400)
+    description = models.CharField(max_length=400, blank=True, null=True)
 
 
 class Platform(models.Model):
     name = models.CharField(max_length=400, unique=True)
-    description = models.CharField(max_length=400)
+    description = models.CharField(max_length=400, blank=True, null=True)
 
 
 class Game(models.Model):
     name = models.CharField(max_length=400, unique=True)
-    description = models.CharField(max_length=400)
-    category = models.CharField(max_length=400)
+    description = models.CharField(max_length=400, blank=True, null=True)
+    category = models.CharField(max_length=400, blank=True, null=True)
     platform = models.ForeignKey(
         Platform, on_delete=models.DO_NOTHING, blank=True, null=True
     )
@@ -44,7 +44,7 @@ class GameCompany(models.Model):
     # ajouter blank
     company = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True)
     game = models.ForeignKey(Game, on_delete=models.CASCADE, blank=True)
-    date = models.DateField(blank=True)
+    date = models.DateField(blank=True, null=True)
 
 
 class GameCollection(models.Model):

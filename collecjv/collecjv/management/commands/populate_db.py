@@ -40,20 +40,20 @@ class Command(BaseCommand):
         stream = requests.post(
             "https://api.igdb.com/v4/games",
             headers=headers,
-            data="fields id, name, involved_companies,summary, game_localizations, platforms.name; limit 1000;",
+            data="fields id, name, involved_companies,summary, game_localizations, platforms.name; limit 500;",
         )
 
         game_data = stream.json()
 
         for game in game_data:
             print(game)
-            if game["involved_companies"] and game["game_localizations"]:
+            if game.get("involved_companies","") and game.get("game_localizations",""):
                 cpy = Company.objects.get_or_create(
-                    name=game.get("involved_companies", ""), area=["game_localizations"]
+                    name=game.get("involved_companies", ""), area=game.get("game_localizations")
                 )
                 one_game = Game.objects.get_or_create(
-                    name=game["name"],
-                    description=["summary"],
+                    name=game.get("name"),
+                    description=game.get("summary"),
                     category="",
                     platform=None,
                 )

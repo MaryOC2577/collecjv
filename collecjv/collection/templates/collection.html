@@ -2,4 +2,13 @@
 
 {% block main %}
 <p>Page collection</p>
+<p>Collections disponibles</p><br>
+{% for collec in collection %}
+<ul>
+    <li>
+        nom : {{collec.name}}
+    </li>
+</ul>
+</p>
+{% endfor %}
 {% endblock %}
