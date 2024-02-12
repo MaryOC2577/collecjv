@@ -8,6 +8,8 @@ from login.models import PassChange
 from datetime import datetime, timezone, timedelta
 from login.mail import send_reset_password_mail
 import uuid
+from django.db.models.query import QuerySet
+from typing import Any
 
 
 class LoginView(View):
@@ -61,9 +63,14 @@ def registration(request):
     return render(request, "registration.html")
 
 
-class AccountView(View):
-    def get(self, request):
-        return render(request, "account.html")
+class AccountView(TemplateView):
+
+    template_name = "account.html"
+    context_object_name = "user"
+    model = GameUser
+
+    # def get_queryset(self) -> QuerySet[Any]:
+    #     return super().get_queryset()
 
 
 class NewPassword(TemplateView):
