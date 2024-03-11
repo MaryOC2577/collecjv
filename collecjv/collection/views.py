@@ -1,7 +1,7 @@
 from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render
-from django.views.generic import View, DetailView,ListView
+from django.views.generic import View, DetailView, ListView, TemplateView
 from collecjv.models import Game, Collection
 
 
@@ -25,3 +25,19 @@ class OneGameView(DetailView):
     def get_context_data(self, **kwargs):
         self.request.session["game_id"] = self.get_object().id
         return super().get_context_data(**kwargs)
+    
+
+class AddGameView(TemplateView):
+    template_name = "addgame.html"
+
+    def get_queryset(self) -> QuerySet[Any]:
+        return super().get_queryset()
+    
+
+class CollecDetail(ListView):
+    template_name = "collecdetail.html"
+    context_object_name = "game"
+    model = Game
+
+    def get_queryset(self) -> QuerySet[Any]:
+        return super().get_queryset()
